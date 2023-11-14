@@ -1,3 +1,4 @@
+counter = 0
 row1 = [' ', ' ', ' ']
 row2 = [' ', ' ', ' ']
 row3 = [' ', ' ', ' ']
@@ -17,5 +18,25 @@ def user_choice():
                 choice = input('Please enter a number (1-9): ')
         return int(choice)
 
+def getCurrentSymbol():
+        global counter
+        symbol_list = ["x", "O"]
+        counter += 1
+        return symbol_list[counter % 2]
 
-user_choice()
+def update_table(index):
+        global row1, row2, row3
+        if index in range(1,4):
+                row1[index - 1] = getCurrentSymbol()
+        elif index in range(4, 7):
+                row2[index % 3 - 1] = getCurrentSymbol()
+        else:
+                row3[index % 3 - 1] = getCurrentSymbol()
+                
+def start_game():
+        while True:
+                display(row1, row2, row3)
+                choice = user_choice()
+                update_table(choice)
+
+start_game()
