@@ -1,19 +1,21 @@
-import random
+row1 = [' ', ' ', ' ']
+row2 = [' ', ' ', ' ']
+row3 = [' ', ' ', ' ']
 
-secret = random.randint(1,100)
-min_value = 1
-max_value = 100
-print(secret)
+def display(row1, row2, row3):
+        print(row1)
+        print(row2)
+        print(row3)
 
-while True:
-        guess = input(f'Make your guess(between {min_value} and {max_value}): ')
-        if int(guess) < min_value or int(guess) > max_value:
-                print(f"Your guess is not within the range!!")
-                continue
-        if int(guess) == secret:
-                print(f"The secret is {secret}")
-                break
-        elif int(guess) < secret:
-                min_value = int(guess)
-        elif int(guess) > secret:
-                max_value = int(guess)
+def user_choice():
+        choice = input('Please enter a number (1-9): ')
+        while not choice.isdigit() or (int(choice) not in range(1,10)):
+                if not choice.isdigit():
+                        print("Sorry, your choice is not valid")
+                else:
+                        print("Your choice is not within the range of 1 - 9.")
+                choice = input('Please enter a number (1-9): ')
+        return int(choice)
+
+
+user_choice()
